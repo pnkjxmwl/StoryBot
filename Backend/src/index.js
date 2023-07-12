@@ -5,7 +5,7 @@ import Story from './models/story.js';
 import user from './models/user.js';
 import StoryRepository from './repository/story-repo.js';
 import StoryService from './services/story-service.js';
-
+import UserService from './services/user-service.js';
 app.listen(4000,async ()=>{
     console.log('App started at PORT 4000');
     await connect();
@@ -27,7 +27,17 @@ app.listen(4000,async ()=>{
     // console.log(story);
 
 
-    const storyservice=new StoryService()
-    const story=await storyservice.create("a story on india","64aee167ec1b89ca9f80a8f3");
-    console.log(story);
+    // const storyservice=new StoryService()
+    // const story=await storyservice.create("latest story","64aef2d479e5814469d124c9");
+    // console.log(story);
+
+    // const userservice= new UserService()
+    // const user= await userservice.findbyid("64aef2d479e5814469d124c9")
+    // // const user= await userservice.signup({
+    // //     email:"rahul@gmail.com",
+    // //     password:"789",
+    // //     name:"rahul",
+    // //     stories:[]
+    // // })
+    // console.log(user);
 })

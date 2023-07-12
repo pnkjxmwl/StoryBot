@@ -33,7 +33,7 @@ class UserRepository {
     {
 
             try {
-                const User= await user.findById(id);
+                const User= await user.findById(id).populate({path:'stories'});
                 return User;
             } catch (error) {
                     console.log(error);
