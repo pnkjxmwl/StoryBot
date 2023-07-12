@@ -13,7 +13,13 @@ const userSchema= new mongoose.Schema({
     name:{
         type:String,
         required:true
-    }
+    },
+    stories:[
+        {
+           type:mongoose.Schema.Types.ObjectId,
+            ref:'Story'
+        }
+    ]
 
 
 },{timestamps:true})
