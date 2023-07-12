@@ -12,6 +12,7 @@ class StoryService{
         {   
 
             try {
+                console.log(content,userId);
                 var user=await this.userrepo.find(userId);
                 const story= await this.storyrepo.create(
                     {
@@ -27,7 +28,15 @@ class StoryService{
             }
 
         }
-
+        async get(id)
+        {
+            try {
+                    const story= await this.storyrepo.find(id)
+                    return story
+            } catch (error) {
+                console.log(error);
+            }
+        }
 
 }
 export default StoryService

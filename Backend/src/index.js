@@ -1,11 +1,21 @@
 import express from 'express'
 import { connect } from './config/database.js';
+import bodyParser from 'body-parser';
+import apiRoutes from './routes/index.js'
 const app= express();
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended:true}))
+
+app.use('/api',apiRoutes)
 import Story from './models/story.js';
 import user from './models/user.js';
 import StoryRepository from './repository/story-repo.js';
 import StoryService from './services/story-service.js';
 import UserService from './services/user-service.js';
+
+
+
+
 app.listen(4000,async ()=>{
     console.log('App started at PORT 4000');
     await connect();
