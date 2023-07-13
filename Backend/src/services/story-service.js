@@ -15,10 +15,14 @@ class StoryService{
         {   
 
             try {
-                //console.log(theme,content,userId);
-                const inputText=`write a story about ${content} in the theme ${theme} under 100 words`;
+                console.log(theme,content,userId);
+                const inputText=`write a story about ${content} in the theme ${theme} under 10 words`;
                 const storycontent=await this.getChatGPTResponse(inputText)
-               // console.log(storycontent);
+                console.log(storycontent);
+               if(!storycontent)
+               {
+                throw {error:"Chatgpt doesnt give the Story"};
+               }
                 var user=await this.userrepo.find(userId);
 
                 const story= await this.storyrepo.create(
@@ -29,9 +33,10 @@ class StoryService{
                 )
                 user.stories.push(story);
                 await user.save();
-                return story
+                return storycontent
             } catch (error) {
                 console.log(error);
+                throw error
             }
 
         }
@@ -42,6 +47,7 @@ class StoryService{
                     return story
             } catch (error) {
                 console.log(error);
+                throw error
             }
         }
         async  getChatGPTResponse(inputText) {
