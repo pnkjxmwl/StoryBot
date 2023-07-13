@@ -5,7 +5,7 @@ const storyservice = new StoryService();
 export const createstory= async (req,resp)=>{
 
         try {
-                const response= await storyservice.create(req.body.content,req.body.userId)
+                const response= await storyservice.create(req.body.theme,req.body.content,req.body.userId)
                 return resp.status(200).json({
                     success:true,
                     message:"Succesfull in Creating a Story",
