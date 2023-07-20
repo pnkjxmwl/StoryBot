@@ -1,7 +1,13 @@
 import {StoryRepository,UserRepository } from '../repository/index.js'
 import { Configuration, OpenAIApi } from "openai";
-import dotenv from "dotenv";
+import { separateIntoParts } from '../utils/utils.js';
+import Replicate from 'replicate';
 dotenv.config();
+// const replicate = new Replicate({
+//   auth: process.env.REPLICATE_API_TOKEN,
+// });
+import dotenv from "dotenv";
+
 class StoryService{
 
         constructor()
@@ -16,24 +22,47 @@ class StoryService{
 
             try {
                 console.log(theme,content,userId);
-                const inputText=`write a story about ${content} in the theme ${theme} under 10 words`;
-                const storycontent=await this.getChatGPTResponse(inputText)
+                const inputText=`
+                I want you to act as a storyteller. 
+                You will write a story in under 100 words in three parts,
+                the parts should be sepearted by a character & and 
+                only write the story no theme, no title, nothing else. 
+                My first request is "I am going to write a short story about ${content} on the theme ${theme}`;
+                var storycontent=await this.getChatGPTResponse(inputText)
                 console.log(storycontent);
+
+                const partsArray = separateIntoParts(storycontent);
+                console.log(partsArray);
+
                if(!storycontent)
                {
                 throw {error:"Chatgpt doesnt give the Story"};
                }
+              //  const image = await replicate.run(
+              //   "stability-ai/stable-diffusion:ac732df83cea7fff18b8472768c88ad041fa750ff7682a21affe81863cbe77e4",
+              //   {
+              //     input: {
+              //       prompt: storycontent
+              //     }
+              //   }
+              // );
                 var user=await this.userrepo.find(userId);
 
                 const story= await this.storyrepo.create(
                     {
-                        content:storycontent,
+                        content:partsArray,
                         userId:userId
                     }
                 )
+                const image="";
                 user.stories.push(story);
                 await user.save();
-                return storycontent
+                const storyy= {
+                    content:partsArray,
+                    img:image
+                }
+                return storyy
+               
             } catch (error) {
                 console.log(error);
                 throw error
