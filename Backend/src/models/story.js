@@ -14,7 +14,13 @@ const storySchema= new mongoose.Schema({
         type:mongoose.Schema.Types.ObjectId,
         ref:'user',
         required:true
-    }
+    },
+    images:[
+        {
+            type:String,
+            required:true
+        }
+    ]
 
 },{timestamps:true})
 

@@ -84,6 +84,7 @@
             // resultContainer.textContent = story;
             // resultContainer.appendChild(imgtag);
             const partsArray= response.data.data.content
+            const imageArray= response.data.data.img
             for (let i = 0; i < partsArray.length; i++) {
                             let partNumber, partContent;
                   if (partsArray[i].includes(':')) {
@@ -100,7 +101,7 @@
 
                   const imgTag = document.createElement('img');
                   // Assuming you have the image URL for each part, replace 'imageURL' with the actual image URL
-                  imgTag.setAttribute('src', '');
+                  imgTag.setAttribute('src', imageArray[i]);
 
                   const targetDiv = document.getElementById(`part${i + 1}`);
                   targetDiv.appendChild(h2Tag);

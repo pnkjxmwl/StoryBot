@@ -1,12 +1,10 @@
 import {StoryRepository,UserRepository } from '../repository/index.js'
 import { Configuration, OpenAIApi } from "openai";
-import { separateIntoParts } from '../utils/utils.js';
+import { separateIntoParts,generateImages } from '../utils/utils.js';
 import Replicate from 'replicate';
-dotenv.config();
-// const replicate = new Replicate({
-//   auth: process.env.REPLICATE_API_TOKEN,
-// });
 import dotenv from "dotenv";
+dotenv.config();
+
 
 class StoryService{
 
@@ -38,28 +36,23 @@ class StoryService{
                {
                 throw {error:"Chatgpt doesnt give the Story"};
                }
-              //  const image = await replicate.run(
-              //   "stability-ai/stable-diffusion:ac732df83cea7fff18b8472768c88ad041fa750ff7682a21affe81863cbe77e4",
-              //   {
-              //     input: {
-              //       prompt: storycontent
-              //     }
-              //   }
-              // );
+
+              const imagesArr=await generateImages(partsArray)
+              console.log(imagesArr);
                 var user=await this.userrepo.find(userId);
 
                 const story= await this.storyrepo.create(
                     {
                         content:partsArray,
-                        userId:userId
+                        userId:userId,
+                        images:imagesArr
                     }
                 )
-                const image="";
                 user.stories.push(story);
                 await user.save();
                 const storyy= {
                     content:partsArray,
-                    img:image
+                    img:imagesArr
                 }
                 return storyy
                
