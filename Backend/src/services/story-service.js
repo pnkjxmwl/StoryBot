@@ -1,7 +1,6 @@
 import {StoryRepository,UserRepository } from '../repository/index.js'
 import { Configuration, OpenAIApi } from "openai";
 import { separateIntoParts,generateImages } from '../utils/utils.js';
-import Replicate from 'replicate';
 import dotenv from "dotenv";
 dotenv.config();
 
