@@ -9,6 +9,7 @@
 <body>
 
 
+
   <div class="container">
     <h2>Welcome to Our Websiteee</h2>
     <div id="mainContent">
@@ -54,17 +55,6 @@
       
         <div id="result" class="result">
       
-          <div id="part1">
-      
-          </div>
-      
-          <div id="part2">
-      
-          </div>
-          
-          <div id="part3">
-      
-          </div>
       
         </div>
       </div>
@@ -110,27 +100,22 @@
 
             const partsArray= response.data.data.content
             const imageArray= response.data.data.img
-            for (let i = 0; i < partsArray.length; i++) {
-                            let partNumber, partContent;
-                  if (partsArray[i].includes(':')) {
-                    const [partNum, ...contentArr] = partsArray[i].split(':');
-                    partNumber = partNum.trim();
-                    partContent = contentArr.join(':').trim();
-                  } else {
-                    partNumber = `Part ${i + 1}`;
-                    partContent = partsArray[i].trim();
-                  }
 
+            const result=document.getElementById('result')
+            for (let i = 0; i < partsArray.length; i++) {
+                            let  partContent;
+                  partContent=partsArray[i];
                   const h2Tag = document.createElement('h2');
                   h2Tag.textContent = partContent;
 
                   const imgTag = document.createElement('img');
-                  // Assuming you have the image URL for each part, replace 'imageURL' with the actual image URL
                   imgTag.setAttribute('src', imageArray[i]);
 
-                  const targetDiv = document.getElementById(`part${i + 1}`);
+                  const targetDiv = document.createElement('div')
                   targetDiv.appendChild(h2Tag);
                   targetDiv.appendChild(imgTag);
+
+                  result.appendChild(targetDiv)
       }
 
                 }, (error) => {

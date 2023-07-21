@@ -4,6 +4,13 @@
   <title>Community Stories</title>
 </head>
 <body>
+  <nav id="navbar" style="display: block;">
+    <ul>
+      <li><a id="communityButton" href="#">Community</a></li>
+      <li><a id="profileButton" href="file:///D:/PROGRAM/Projects/StoryBot/Frontend/main.html">Profile</a></li>
+      <li><button id="logoutButton">Logout</button></li>
+    </ul>
+  </nav>
   <h1>Community Stories</h1>
   <div id="communityStoriesContainer"></div>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
@@ -18,18 +25,18 @@
           const storyDiv = document.createElement('div');
           storyDiv.classList.add('story-box');
 
-          const userTag = document.createElement('h2');
-          userTag.textContent = story.userId.name;
+          const userTag = document.createElement('h3');
+          userTag.textContent = "by "+story.userId.name;
 
-          const titleTag = document.createElement('h3');
+          const titleTag = document.createElement('h2');
           titleTag.textContent = story.title;
 
           const imgTag = document.createElement('img');
           imgTag.setAttribute('src', story.images[0]);
           imgTag.setAttribute('alt', 'Story Image');
 
-          storyDiv.appendChild(userTag);
           storyDiv.appendChild(titleTag);
+          storyDiv.appendChild(userTag);
           storyDiv.appendChild(imgTag);
 
           // Add click event listener to each story box
@@ -44,6 +51,14 @@
       .catch((error) => {
         console.log(error);
       });
+
+      document.getElementById('logoutButton').addEventListener('click', () => {
+      // Clear the JWT token from localStorage to log the user out
+      localStorage.removeItem('jwtToken');
+  
+      // Redirect to the main page (index.html) after logout
+      window.location.href = 'file:///D:/PROGRAM/Projects/StoryBot/Frontend/main.html';
+    });
   </script>
   <style>
     .story-box {
