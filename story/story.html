@@ -4,7 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide|Sofia|Trirong">
+
     <style>
+        .logo{
+    border-radius: 40px;
+}
+
 .story-representation {
     margin-top: 40px;
     background-color: #f9f9f9;
@@ -15,10 +21,11 @@
 
 .story-header {
     margin-bottom: 20px;
+    
 }
 
 .story-title {
-    font-size: 24px;
+    font-size: 50px;
     color: #333;
     margin: 0;
 }
@@ -47,9 +54,9 @@
 
 .story-details-img img {
     width: 100%; /* Image takes the entire width of the div */
-    height: 300px; /* Adjusted height of the images */
+    height: 80%; /* Adjusted height of the images */
     object-fit: cover; /* Ensure the images cover the entire container */
-    border-radius: 5px; /* Adjusted border radius to match the image shape */
+    border-radius: 10px; /* Adjusted border radius to match the image shape */
 }
 .main-content {
     background-color: #1a1a1a;
@@ -64,12 +71,13 @@
 }
 
 .story-details-text p {
-    font-size: 14px;
+    font-size: 20px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     color: #444;
     margin: 0;
 }
 
-          .header {
+.header {
     background-color: #1a1a1a;
     color: #fff;
     display: flex;
@@ -106,7 +114,6 @@
     body {
       margin: 0;
       padding: 0;
-      font-family: Arial, sans-serif;
       background-color: #1a1a1a;
       color: #fff;
     }
@@ -117,14 +124,14 @@
     <header class="header">
         <div class="header-left">
             <img src="logo.png" alt="Logo" class="logo">
-            <span class="logo-text">Tales Factory</span>
+            <span class="logo-text">StoryBot</span>
         </div>
         <div class="header-right">
-            <a href="file:///D:/PROGRAM/Projects/testing/story/index.html" class="nav-link">Home</a>
-            <a href="file:///D:/PROGRAM/Projects/testing/story/signin.html" class="nav-link"  id="login-link">Login</a>
-            <a href="file:///D:/PROGRAM/Projects/testing/story/community.html" class="nav-link">Community</a>
-            <a href="file:///D:/PROGRAM/Projects/testing/story/about.html" class="nav-link">About</a>
-            <a href="file:///D:/PROGRAM/Projects/testing/story/userstory.html" class="nav-link" id="profile-link">Profile</a>
+            <a href="file:///D:/PROGRAM/Projects/StoryBot/story/index.html" class="nav-link">Home</a>
+            <a href="file:///D:/PROGRAM/Projects/StoryBot/story/signin.html" class="nav-link"  id="login-link">Login</a>
+            <a href="file:///D:/PROGRAM/Projects/StoryBot/story/community.html" class="nav-link">Community</a>
+            <a href="file:///D:/PROGRAM/Projects/StoryBot/story/about.html" class="nav-link">About</a>
+            <a href="file:///D:/PROGRAM/Projects/StoryBot/story/userstory.html" class="nav-link" id="profile-link">Profile</a>
 
         </div>
     </header>
@@ -149,7 +156,7 @@
         // Remove the token from localStorage (you may need to perform other logout actions based on your setup)
         localStorage.removeItem('jwtToken');
         // Redirect to the main HTML (replace "main.html" with your desired URL)
-        window.location.href = 'file:///D:/PROGRAM/Projects/testing/story/index.html';
+        window.location.href = 'file:///D:/PROGRAM/Projects/StoryBot/story/index.html';
     });
 }
 else{

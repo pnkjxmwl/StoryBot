@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Check for the presence of a JWT token in localStorage
     const jwtToken = localStorage.getItem('jwtToken');
     document.getElementById('result').style.display = 'none';
-
+    document.getElementById('loader').style.display='none';
     if (jwtToken) {
       // Token is present, show the welcome page with user info
        const profileLink = document.getElementById('profile-link');
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Remove the token from localStorage (you may need to perform other logout actions based on your setup)
         localStorage.removeItem('jwtToken');
         // Redirect to the main HTML (replace "main.html" with your desired URL)
-        window.location.href = 'file:///D:/PROGRAM/Projects/testing/story/index.html';
+        window.location.href = 'file:///D:/PROGRAM/Projects/StoryBot/story/index.html';
     });
       showWelcomePage();
       document.getElementById('storyFormContainer').style.display = 'block';

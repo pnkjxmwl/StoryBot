@@ -32,6 +32,10 @@
 .header-right {
     display: flex;
 }
+.logo{
+    border-radius: 40px;
+}
+
 
 .nav-link {
     color: #fff;
@@ -100,18 +104,18 @@
     <header class="header">
         <div class="header-left">
             <img src="logo.png" alt="Logo" class="logo">
-            <span class="logo-text">Tales Factory</span>
+            <span class="logo-text">StoryBot</span>
         </div>
         <div class="header-right">
-            <a href="file:///D:/PROGRAM/Projects/testing/story/index.html" class="nav-link">Home</a>
-            <a href="file:///D:/PROGRAM/Projects/testing/story/signin.html" class="nav-link"  id="login-link">Login</a>
-            <a href="file:///D:/PROGRAM/Projects/testing/story/community.html" class="nav-link">Community</a>
-            <a href="file:///D:/PROGRAM/Projects/testing/story/about.html" class="nav-link">About</a>
-            <a href="file:///D:/PROGRAM/Projects/testing/story/userstory.html" class="nav-link" id="profile-link">Profile</a>
+            <a href="file:///D:/PROGRAM/Projects/StoryBot/story/index.html" class="nav-link">Home</a>
+            <a href="file:///D:/PROGRAM/Projects/StoryBot/story/signin.html" class="nav-link"  id="login-link">Login</a>
+            <a href="file:///D:/PROGRAM/Projects/StoryBot/story/community.html" class="nav-link">Community</a>
+            <a href="file:///D:/PROGRAM/Projects/StoryBot/story/about.html" class="nav-link">About</a>
+            <a href="file:///D:/PROGRAM/Projects/StoryBot/story/userstory.html" class="nav-link" id="profile-link">Profile</a>
         </div>
     </header>
   <div class="main-content">
-    <h1> <span id="username"></span>STORIES</h1>
+    <h1> <span id="username"></span>  STORIES</h1>
     <div id="story-container">
 
     </div>
@@ -130,7 +134,7 @@
 
       // Function to redirect to the main page
       function redirectToMainPage() {
-        window.location.href = 'file:///D:/PROGRAM/Projects/testing/story/index.html';
+        window.location.href = 'file:///D:/PROGRAM/Projects/StoryBot/story/index.html';
       }
 
 
@@ -144,7 +148,7 @@
         // Remove the token from localStorage (you may need to perform other logout actions based on your setup)
         localStorage.removeItem('jwtToken');
         // Redirect to the main HTML (replace "main.html" with your desired URL)
-        window.location.href = 'file:///D:/PROGRAM/Projects/testing/story/index.html';
+        window.location.href = 'file:///D:/PROGRAM/Projects/StoryBot/story/index.html';
     });
 
         const user = await getuser(jwtToken);
@@ -166,7 +170,7 @@
              storyDiv.classList.add('story');
             
         const userTag = document.createElement('h3');
-          userTag.textContent = "by "+story.userId.name;
+          userTag.textContent = "by "+response.data.data.name;
 
             const h2Tag = document.createElement('h2');
             h2Tag.textContent = story.title;
@@ -181,7 +185,7 @@
 
           storyDiv.addEventListener('click', () => {
             // Redirect to the story page with the full story content
-            window.location.href = `file:///D:/PROGRAM/Projects/testing/story/story.html?storyId=${story._id}`;
+            window.location.href = `file:///D:/PROGRAM/Projects/StoryBot/story/story.html?storyId=${story._id}`;
           }); 
             
             userStoriesContainer.appendChild(storyDiv);

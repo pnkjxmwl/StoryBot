@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (jwtToken) {
       // Token is present, show the welcome page with user info
 
-        window.location.href = 'file:///D:/PROGRAM/Projects/testing/story/index.html';
+        window.location.href = 'file:///D:/PROGRAM/Projects/StoryBot/story/index.html';
     }
  })
 
@@ -32,7 +32,7 @@ document.getElementById('signinForm').addEventListener('submit', async (event) =
         // Signin success: Store the JWT token in localStorage
         localStorage.setItem('jwtToken', data.data);
        // alert('Signin successful! You are now authenticated.');
-        window.location.href = 'file:///D:/PROGRAM/Projects/testing/story/index.html';
+        window.location.href = 'file:///D:/PROGRAM/Projects/StoryBot/story/index.html';
 
       } else {
         // Signin failed: Display the error message from the server
