@@ -10,6 +10,9 @@ const storySchema= new mongoose.Schema({
         max:[300,'Stories Cannot be More than 300 Characters']
     }
     ],
+    title:{
+        type:String
+    },
     userId:{
         type:mongoose.Schema.Types.ObjectId,
         ref:'user',

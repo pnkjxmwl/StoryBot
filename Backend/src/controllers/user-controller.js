@@ -1,4 +1,3 @@
-import user from '../models/user.js';
 import UserService from '../services/user-service.js'
 
 const userservice= new UserService();
@@ -35,7 +34,8 @@ export const createUser= async (req,resp)=>{
 export const getUser= async(req,resp)=>{
 
         try {
-            const user= await userservice.findbyid(req.body.id)
+            //console.log(req.query);
+            const user= await userservice.findbyid(req.query.id)
             return resp.status(200).json({
                 success:true,
                 message:"Succesfully Fetched User",
@@ -51,5 +51,47 @@ export const getUser= async(req,resp)=>{
                 err:error
             })
         }
+
+}
+export const signIn= async(req,resp)=>{
+    try {
+        const response =await userservice.signIn(req.body.email,req.body.password)
+        return resp.status(201).json({
+            data:response,
+            success:true,
+            message:'Succesfully sign in user',
+            err:{}
+        })
+
+    } catch (error) {
+        console.log(error);
+        return resp.status(500).json({
+            data:{},
+            success:false,
+            message:error.message,
+            err:error
+        })
+    }
+}
+export const isAuthenticated= async (req,resp)=>{
+
+    try {
+        const token=req.headers['x-access-token'];
+        console.log(token);
+        const response=await userservice.isAuthenticated(token)     
+        return resp.status(200).json({
+            success:true,
+            err:{},
+            data:response,
+            message:'user is authenticated and token is valid'
+        })
+    } catch (error) {
+        console.log(error);
+        return resp.status(500).json({
+            data:{},
+            success:false,
+            err:error
+        })
+    }
 
 }

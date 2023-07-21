@@ -18,13 +18,10 @@ class StoryService{
         {   
 
             try {
-                console.log(theme,content,userId);
+                console.log("in story service ",theme,content,userId);
+                const storytitle=content
                 const inputText=`
-                I want you to act as a storyteller. 
-                You will write a story in under 100 words in three parts,
-                the parts should be sepearted by a character & and 
-                only write the story no theme, no title, nothing else. 
-                My first request is "I am going to write a short story about ${content} on the theme ${theme}`;
+                I want you to act as a storyteller.  You will write a story in under 200 words . My first request is "I am going to write a short story about ${content} on the theme ${theme}`;
                 var storycontent=await this.getChatGPTResponse(inputText)
                 console.log(storycontent);
 
@@ -35,16 +32,17 @@ class StoryService{
                {
                 throw {error:"Chatgpt doesnt give the Story"};
                }
-
+              //const imagesArr=[]
               const imagesArr=await generateImages(partsArray)
-              console.log(imagesArr);
+             console.log(imagesArr);
                 var user=await this.userrepo.find(userId);
 
                 const story= await this.storyrepo.create(
                     {
                         content:partsArray,
                         userId:userId,
-                        images:imagesArr
+                        images:imagesArr,
+                        title:storytitle
                     }
                 )
                 user.stories.push(story);
@@ -65,6 +63,16 @@ class StoryService{
         {
             try {
                     const story= await this.storyrepo.find(id)
+                    return story
+            } catch (error) {
+                console.log(error);
+                throw error
+            }
+        }
+        async getAll()
+        {
+            try {
+                    const story= await this.storyrepo.getAllStories();
                     return story
             } catch (error) {
                 console.log(error);

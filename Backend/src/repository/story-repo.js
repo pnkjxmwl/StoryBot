@@ -34,13 +34,23 @@ class StoryRepository {
     {
 
             try {
-                const story= await Story.findById(id);
+                const story= await Story.findById(id).populate({path:'userId'});
                 return story;
             } catch (error) {
                     console.log(error);
             }
-
     }
+    async  getAllStories() {
+        try {
+          // Use the find() method on the Story model to fetch all stories
+          const stories = await Story.find().populate({path:'userId'});
+      
+          return stories; 
+        } catch (error) {
+          console.error('Error fetching stories:', error);
+          throw error;
+        }
+      }
 
 
 

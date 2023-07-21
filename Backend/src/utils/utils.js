@@ -4,10 +4,37 @@ dotenv.config();
 const replicate = new Replicate({
   auth: process.env.REPLICATE_API_TOKEN,
 });
+// export function separateIntoParts(content) {
+//     const parts = content.split('&').map(part => part.trim());
+//     return parts;
+//   }
 export function separateIntoParts(content) {
-    const parts = content.split('&').map(part => part.trim());
-    return parts;
+  const paragraphs = content.split('\n');
+  const title = paragraphs[0].trim();
+  const restOfTheStory = paragraphs.slice(1).join('\n').trim();
+
+  const totalParagraphs = restOfTheStory.split('\n').length;
+  const paragraphsPerPart = Math.ceil(totalParagraphs / 3);
+
+  const parts = [];
+  let currentPart = '';
+
+  restOfTheStory.split('\n').forEach((paragraph, index) => {
+    if (index > 0 && index % paragraphsPerPart === 0) {
+      parts.push(currentPart.trim());
+      currentPart = '';
+    }
+    currentPart += '\n' + paragraph;
+  });
+
+  if (currentPart.trim()) {
+    parts.push(currentPart.trim());
   }
+
+  return [title, ...parts];
+}
+
+
   export async function generateImages(partsArray) {
     var count=0;
     const imagePromises = partsArray.map(async (part) => {

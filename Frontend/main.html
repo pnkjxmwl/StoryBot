@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StoryBot</title>
+  <link rel="stylesheet" href="main.css">
+</head>
+<body>
+
+
+  <div class="container">
+    <h2>Welcome to Our Websiteee</h2>
+    <div id="mainContent">
+      <!-- Content for authenticated users will be rendered here -->
+      <nav id="navbar" style="display: none;">
+        <ul>
+          <li><a id="communityButton" href="#">Community</a></li>
+          <li><a id="profileButton" href="#">Profile</a></li>
+          <li><button id="logoutButton">Logout</button></li>
+        </ul>
+      </nav>
+      <div class="welcomemessg"></div>
+     
+     
+     
+     
+     
+      <div id="storyFormContainer">
+        <h1>Story Form</h1>
+
+        <form id="storyForm">
+          <div>
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" required>
+          </div>
+      
+          <div>
+            <label>Theme:</label>
+            <div>
+              <input type="radio" id="theme1" name="theme" value="thriller" checked>
+              <label for="theme1">thriller</label>
+            </div>
+            <div>
+              <input type="radio" id="theme2" name="theme" value="comedy">
+              <label for="theme2">comedy</label>
+            </div>
+          </div>
+      
+          <div>
+            <button type="submit">Submit</button>
+          </div>
+        </form>
+      
+        <div id="result" class="result">
+      
+          <div id="part1">
+      
+          </div>
+      
+          <div id="part2">
+      
+          </div>
+          
+          <div id="part3">
+      
+          </div>
+      
+        </div>
+      </div>
+
+    </div>
+    <div id="unauthenticatedContent">
+      <p>This is a website about something awesome!</p>
+      <button id="signupButton">Signup</button>
+      <button id="signinButton">Signin</button>
+    </div>
+  </div>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="app3.js"></script>
+  <script>
+
+    document.getElementById('storyForm').addEventListener('submit',async function(event) {
+      event.preventDefault();
+      const jwtToken = localStorage.getItem('jwtToken');
+      const  response = await fetch('http://127.0.0.1:4000/api/v1/isAuthenticated', {
+        method: 'GET',
+        headers: {
+            'x-access-token': jwtToken, // Attach the JWT token as x-access-token in the headers
+          }
+      });
+     const data= await response.json();
+      console.log(data);
+      const user=data.data;
+      console.log("id:  ",user._id);
+
+      const title = document.getElementById('title').value;
+      const theme = document.querySelector('input[name="theme"]:checked').value;
+      const userid = user._id; // Replace with your user ID
+
+      const requestBody = {
+        content: title,
+        theme: theme,
+        userId: userid
+      };
+      console.log(title,theme,userid);
+      axios.post('http://127.0.0.1:4000/api/v1/story', requestBody)
+                .then((response) => {
+                  console.log(response)
+
+            const partsArray= response.data.data.content
+            const imageArray= response.data.data.img
+            for (let i = 0; i < partsArray.length; i++) {
+                            let partNumber, partContent;
+                  if (partsArray[i].includes(':')) {
+                    const [partNum, ...contentArr] = partsArray[i].split(':');
+                    partNumber = partNum.trim();
+                    partContent = contentArr.join(':').trim();
+                  } else {
+                    partNumber = `Part ${i + 1}`;
+                    partContent = partsArray[i].trim();
+                  }
+
+                  const h2Tag = document.createElement('h2');
+                  h2Tag.textContent = partContent;
+
+                  const imgTag = document.createElement('img');
+                  // Assuming you have the image URL for each part, replace 'imageURL' with the actual image URL
+                  imgTag.setAttribute('src', imageArray[i]);
+
+                  const targetDiv = document.getElementById(`part${i + 1}`);
+                  targetDiv.appendChild(h2Tag);
+                  targetDiv.appendChild(imgTag);
+      }
+
+                }, (error) => {
+                console.log(error);
+                })
+    });
+  </script>
+</body>
+</html>

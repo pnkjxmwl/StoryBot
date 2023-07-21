@@ -43,7 +43,7 @@ app.listen(4000,async ()=>{
     // const story=await storyservice.create("latest story","64aef2d479e5814469d124c9");
     // console.log(story);
 
-    // const userservice= new UserService()
+     const userservice= new UserService()
     // const user= await userservice.findbyid("64aef2d479e5814469d124c9")
     // // const user= await userservice.signup({
     // //     email:"rahul@gmail.com",
@@ -52,4 +52,13 @@ app.listen(4000,async ()=>{
     // //     stories:[]
     // // })
     // console.log(user);
+
+    const data={
+      email:"pankaj123@gmail.com",
+      password:"pankaj",
+      name:"pankaj",
+      stories:[]
+     }
+    // await userservice.signup(data)
+
 })

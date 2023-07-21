@@ -29,6 +29,27 @@ class UserRepository {
             console.log(error);
         }
     }
+    async getByEmail(email){
+        try {
+            const User= await user.findOne({
+
+                    email:email
+            })
+            if(!user){
+                
+                throw error={
+                    name:'AttributeNotFound',
+                    message:'Invalid Email Sent in Request',
+                    explanation:'Please check if email is registered',
+                    statusCode:404
+                    }
+            }
+            return User
+         } catch (error) {
+             console.log("something wrong in user repo");
+             throw error
+         }
+    }
     async find(id)
     {
 
