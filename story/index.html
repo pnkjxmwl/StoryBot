@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tales Factory | Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header class="header">
+        <div class="header-left">
+            <img src="logo.png" alt="Logo" class="logo">
+            <span class="logo-text">Tales Factory</span>
+        </div>
+        <div class="header-right">
+            <a href="file:///D:/PROGRAM/Projects/testing/story/index.html" class="nav-link">Home</a>
+            <a href="file:///D:/PROGRAM/Projects/testing/story/signin.html" class="nav-link"  id="login-link">Login</a>
+            <a href="file:///D:/PROGRAM/Projects/testing/story/community.html" class="nav-link">Community</a>
+            <a href="file:///D:/PROGRAM/Projects/testing/story/about.html" class="nav-link">About</a>
+            <a href="file:///D:/PROGRAM/Projects/testing/story/userstory.html" class="nav-link" id="profile-link">Profile</a>
+
+        </div>
+    </header>
+
+    <div class="main-content">
+        <div class="content">
+            <h1>Create Storybooks in Seconds</h1>
+            <h2>A New Way of Storytelling Using the Latest and Advanced Artificial Intelligence Technology</h2>
+            <div id="unauthenticatedContent">
+                <div class="buttons">
+                <a href="file:///D:/PROGRAM/Projects/testing/story/signup.html" class="btn-signup">Sign Up</a>
+                <a href="file:///D:/PROGRAM/Projects/testing/story/signin.html" class="btn-signin">Sign In</a>
+                </div>
+            </div>
+
+       <div id="storyFormContainer">
+            <div class="story-form">
+                <form id="story-form">
+                    <div class="form-group">
+                        <label for="story-title">Story Title:</label>
+                        <input type="text" id="story-title" name="story-title" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Story Theme:</label>
+                        <div class="radio-group">
+                            <label for="comedy">Comedy</label>
+                            <input type="radio" id="comedy" name="theme" value="comedy" required>
+                            <label for="thriller">Thriller</label>
+                            <input type="radio" id="thriller" name="theme" value="thriller" required>
+                            <label for="mystery">Mystery</label>
+                            <input type="radio" id="mystery" name="theme" value="mystery" required>
+                            <label for="sci-fi">Sci Fi</label>
+                            <input type="radio" id="sci-fi" name="theme" value="sci-fi" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-submit">Submit</button>
+                </form>
+            </div>
+        </div>
+
+           
+        <div class="story-representation" id="result">
+            <!-- Story details divs will be added dynamically here -->
+        </div>
+
+
+
+            
+
+
+
+
+        </div>
+    </div>
+
+    <div class="features-section">
+        <h2 class="features-heading">Features</h2>
+        <p class="features-text">Unleash your inner storyteller. Simply type in an idea and Tales Factory will
+            automatically make beautiful stories with unique illustrations.</p>
+        <img src="story_image.jpg" alt="Story Image" class="story-image">
+        <div class="features-columns">
+            <div class="feature-column">
+                <h3 class="feature-title">Interactive Stories</h3>
+                <p class="feature-description">Immerse yourself in interactive and captivating stories brought to life
+                    with cutting-edge AI.</p>
+            </div>
+            <div class="feature-column">
+                <h3 class="feature-title">Illustrated Tales</h3>
+                <p class="feature-description">Enjoy beautifully illustrated tales with stunning artwork that
+                    complements the narrative.</p>
+            </div>
+            <div class="feature-column">
+                <h3 class="feature-title">Easy Sharing</h3>
+                <p class="feature-description">Share your creations with friends and family effortlessly through social
+                    media integration.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="statistics-section">
+        <div class="statistics-left">
+            <h3 class="statistics-subheading">3000+ Storybooks</h3>
+            <p class="statistics-text">Discover a vast library of storybooks for readers of all ages and interests.</p>
+            <h3 class="statistics-subheading">10+ Books Created Today</h3>
+            <p class="statistics-text">Our community of talented authors is actively contributing new books every day.
+            </p>
+        </div>
+        <div class="statistics-right">
+            <h3 class="statistics-subheading">2000+ Members</h3>
+            <p class="statistics-text">Join our ever-growing community of passionate readers and authors.</p>
+            <h3 class="statistics-subheading">50+ Members Today</h3>
+            <p class="statistics-text">Our community continues to expand, connecting more members each day.</p>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2023 Tales Factory. All rights reserved.</p>
+    </footer>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="app3.js"></script>
+    <script>
+  
+      document.getElementById('story-form').addEventListener('submit',async function(event) {
+        event.preventDefault();
+
+        const jwtToken = localStorage.getItem('jwtToken');
+        const  response = await fetch('http://127.0.0.1:4000/api/v1/isAuthenticated', {
+          method: 'GET',
+          headers: {
+              'x-access-token': jwtToken, // Attach the JWT token as x-access-token in the headers
+            }
+        });
+       const data= await response.json();
+        console.log(data);
+        const user=data.data;
+        console.log("id:  ",user._id);
+  
+        const title = document.getElementById('story-title').value;
+        const theme = document.querySelector('input[name="theme"]:checked').value;
+        const userid = user._id; // Replace with your user ID
+  
+        const requestBody = {
+          content: title,
+          theme: theme,
+          userId: userid
+        };
+        console.log(title,theme,userid);
+        axios.post('http://127.0.0.1:4000/api/v1/story', requestBody)
+                  .then((response) => {
+                    console.log(response)
+            document.getElementById('result').style.display = 'block';
+
+              const partsArray= response.data.data.content
+              const imageArray= response.data.data.img
+              const title=response.data.data.title;
+              const username=user.name;
+
+                const storyHeaderDiv = document.createElement('div');
+                    storyHeaderDiv.classList.add('story-header');
+
+                    const h3Tag = document.createElement('h3');
+                    h3Tag.classList.add('story-title');
+                    h3Tag.textContent = title;
+
+                    const pTag = document.createElement('p');
+                    pTag.classList.add('story-username');
+                    pTag.textContent = "by "+username;
+
+                    storyHeaderDiv.appendChild(h3Tag);
+                    storyHeaderDiv.appendChild(pTag);
+
+            
+              const result=document.getElementById('result')
+              result.appendChild(storyHeaderDiv)
+              for (let i = 0; i < partsArray.length; i++) {
+                    let partContent = partsArray[i];
+                    let imgSrc = imageArray[i];
+
+                    const storydiv = document.createElement('div');
+                    storydiv.classList.add("story-details");
+                    
+                    const storyDetailsItem = document.createElement('div');
+                    storyDetailsItem.classList.add('story-details-item');
+
+                    const storyDetailsImg = document.createElement('div');
+                    storyDetailsImg.classList.add('story-details-img');
+                    const imgTag = document.createElement('img');
+                    imgTag.setAttribute('src', imgSrc);
+                    storyDetailsImg.appendChild(imgTag);
+
+                    const storyDetailsText = document.createElement('div');
+                    storyDetailsText.classList.add('story-details-text');
+                    const pTag = document.createElement('p');
+                    pTag.textContent = partContent;
+                    storyDetailsText.appendChild(pTag);
+
+                    storyDetailsItem.appendChild(storyDetailsImg);
+                    storyDetailsItem.appendChild(storyDetailsText);
+
+                    storydiv.appendChild(storyDetailsItem)
+                    result.appendChild(storydiv);
+
+                }
+  
+                  }, (error) => {
+                  console.log(error);
+                  })
+      });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Signin</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #1a1a1a;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    h2 {
+      color: #f97300;
+      margin-bottom: 30px;
+    }
+
+    .header {
+    background-color: #1a1a1a;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    height: 40px;
+    margin-right: 10px;
+}
+
+.logo-text {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.header-right {
+    display: flex;
+}
+
+.nav-link {
+    color: #fff;
+    text-decoration: none;
+    padding: 8px 12px;
+    margin: 0 5px;
+}
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+
+    input {
+      padding: 10px;
+      width: 300px;
+      border: 2px solid #f97300;
+      border-radius: 5px;
+      background-color: #1a1a1a;
+      color: #fff;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 12px 30px;
+      background-color: #f97300;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #ff6600;
+    }
+
+    #signupButton {
+      margin-top: 20px;
+      background-color: #1a1a1a;
+      color: #f97300;
+      border: 2px solid #f97300;
+      transition: background-color 0.3s ease;
+    }
+
+    #signupButton:hover {
+      background-color: #f97300;
+      color: #1a1a1a;
+    }
+  </style>
+  
+</head>
+<body>
+    <header class="header">
+        <div class="header-left">
+            <img src="logo.png" alt="Logo" class="logo">
+            <span class="logo-text">Tales Factory</span>
+        </div>
+        <div class="header-right">
+            <a href="file:///D:/PROGRAM/Projects/testing/story/index.html" class="nav-link">Home</a>
+            <a href="file:///D:/PROGRAM/Projects/testing/story/signin.html" class="nav-link"  id="login-link">Login</a>
+            <a href="file:///D:/PROGRAM/Projects/testing/story/community.html" class="nav-link">Community</a>
+            <a href="file:///D:/PROGRAM/Projects/testing/story/about.html" class="nav-link">About</a>
+        </div>
+    </header>
+  <div class="container">
+    <h2>Signin</h2>
+    <form id="signinForm">
+      <input type="text" placeholder="Email" id="signinEmail" required />
+      <input type="password" placeholder="Password" id="signinPassword" required />
+      <button type="submit">Log In</button>
+    </form>
+    <button id="signupButton">Signup</button>
+  </div>
+  <script src="app.js"></script> 
+  <script>
+    document.getElementById('signupButton').addEventListener('click', () => {
+      window.location.href = 'file:///D:/PROGRAM/Projects/testing/story/signup.html'; // Redirect to the signup page
+    });
+  </script>
+</body>
+</html>

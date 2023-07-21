@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Stories</title>
+  <style>
+    .header {
+    background-color: #1a1a1a;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    height: 40px;
+    margin-right: 10px;
+}
+
+.logo-text {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.header-right {
+    display: flex;
+}
+
+.nav-link {
+    color: #fff;
+    text-decoration: none;
+    padding: 8px 12px;
+    margin: 0 5px;
+}
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #1a1a1a;
+      color: #fff;
+    }
+
+    .main-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px;
+      background-color: #333;
+      border-radius: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 36px;
+      margin-bottom: 30px;
+    }
+
+    #story-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+
+    .story {
+      width: calc(33.33% - 20px); /* Adjusted width to fit 3 in a row */
+      background-color: #f97300;
+      color: #fff;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .story img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+
+    .story-title {
+      font-size: 24px;
+      margin-top: 10px;
+    }
+
+    .story:hover {
+      transform: translateY(-5px);
+    }
+  </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-left">
+            <img src="logo.png" alt="Logo" class="logo">
+            <span class="logo-text">Tales Factory</span>
+        </div>
+        <div class="header-right">
+            <a href="file:///D:/PROGRAM/Projects/testing/story/index.html" class="nav-link">Home</a>
+            <a href="file:///D:/PROGRAM/Projects/testing/story/signin.html" class="nav-link"  id="login-link">Login</a>
+            <a href="file:///D:/PROGRAM/Projects/testing/story/community.html" class="nav-link">Community</a>
+            <a href="file:///D:/PROGRAM/Projects/testing/story/about.html" class="nav-link">About</a>
+            <a href="file:///D:/PROGRAM/Projects/testing/story/userstory.html" class="nav-link" id="profile-link">Profile</a>
+        </div>
+    </header>
+  <div class="main-content">
+    <h1>STORIES</h1>
+    <div id="story-container">
+
+    </div>
+  </div>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+  <script>
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Check for the presence of a JWT token in localStorage
+    const jwtToken = localStorage.getItem('jwtToken');
+    if (jwtToken) {
+      // Token is present, show the welcome page with user info
+      const profileLink = document.getElementById('profile-link');
+        profileLink.style.display = 'block';
+      const loginLink = document.getElementById('login-link');
+      loginLink.textContent = 'Logout';
+      loginLink.addEventListener('click', () => {
+        // Remove the token from localStorage (you may need to perform other logout actions based on your setup)
+        localStorage.removeItem('jwtToken');
+        // Redirect to the main HTML (replace "main.html" with your desired URL)
+        window.location.href = 'file:///D:/PROGRAM/Projects/testing/story/index.html';
+    });
+}
+else{
+    const profileLink = document.getElementById('profile-link');
+        profileLink.style.display = 'none';
+}
+    })
+
+
+    axios.get('http://127.0.0.1:4000/api/v1/stories')
+      .then((response) => {
+        console.log(response);
+        console.log(response);
+        const communityStoriesContainer = document.getElementById('story-container');
+
+
+        response.data.data.forEach((story) => {
+    
+          const storyDiv = document.createElement('div');
+          storyDiv.classList.add('story');
+
+          const userTag = document.createElement('h3');
+          userTag.textContent = "by "+story.userId.name;
+
+          const titleTag = document.createElement('h2');
+          titleTag.textContent = story.title;
+          titleTag.classList.add('story-title')
+
+          const imgTag = document.createElement('img');
+          imgTag.setAttribute('src', story.images[0]);
+          imgTag.setAttribute('alt', 'Story Image');
+
+          storyDiv.appendChild(titleTag);
+          storyDiv.appendChild(userTag);
+          storyDiv.appendChild(imgTag);
+
+          storyDiv.addEventListener('click', () => {
+            // Redirect to story.html with the story ID as a query parameter
+            window.location.href = `file:///D:/PROGRAM/Projects/testing/story/story.html?storyId=${story._id}`;
+          });
+
+          communityStoriesContainer.appendChild(storyDiv);
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+  </script>
+</body>
+</html>

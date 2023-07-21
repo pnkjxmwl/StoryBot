@@ -49,7 +49,8 @@ class StoryService{
                 await user.save();
                 const storyy= {
                     content:partsArray,
-                    img:imagesArr
+                    img:imagesArr,
+                    title:storytitle
                 }
                 return storyy
                
