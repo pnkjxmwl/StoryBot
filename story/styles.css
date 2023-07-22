@@ -44,19 +44,19 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Roboto', Arial, sans-serif; /* Updated to use Roboto font */
+    font-family: 'Roboto', Arial, sans-serif; 
     background-color: #1a1a1a;
     color: #fff;
 }
 #maintheme {
-    font-size: 50px; /* Set the font size to make it big */
-    color: orange; /* Set the color to orange */
+    font-size: 50px; 
+    color: orange; 
   }
 .logo{
     border-radius: 40px;
 }
 
-/* Updated to use Montserrat font for headings */
+
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Montserrat', sans-serif;
 }
@@ -122,23 +122,20 @@ h2 {
     text-decoration: none;
     margin-right: 10px;
     border-radius: 5px;
-    font-size: 16px; /* Adjust the font size */
-    font-weight: bold; /* Add some emphasis to the text */
-    transition: background-color 0.3s ease; /* Add a smooth transition effect */
+    font-size: 16px; 
+    font-weight: bold; 
+    transition: background-color 0.3s ease; 
   }
   
-  /* Style for the signup button */
   .btn-signup {
     background-color: #ff6600;
   }
   
-  /* Hover style for both buttons */
   .btn-signup:hover, .btn-signin:hover {
-    background-color: #ff8000; /* Change the background color on hover */
-    cursor: pointer; /* Show a pointer cursor on hover */
+    background-color: #ff8000; 
+    cursor: pointer;
   }
   
-  /* Optional: Add space between buttons for better spacing */
   .btn-signin:not(:last-child) {
     margin-right: 10px;
   }
@@ -177,12 +174,12 @@ form {
     border-radius: 5px;
     width: 100%;
     font-size: 16px;
-    outline: none; /* Remove the default outline */
+    outline: none; 
     transition: border-color 0.3s ease;
 }
 
 .form-group input[type="text"]:focus {
-    border-color: #ff6600; /* Change border color on focus */
+    border-color: #ff6600; 
 }
 
 .radio-group {
@@ -210,16 +207,14 @@ form {
     cursor: pointer;
     transition: background-color 0.3s ease;
     width: 100%;
-    outline: none; /* Remove the default outline */
+    outline: none; 
 }
 
 .btn-submit:hover {
     background-color: #ff6600;
 }
 
-/* Previous CSS styles are still applicable */
 
-/* Add CSS for the Story Representation */
 .story-representation {
     margin-top: 40px;
     background-color: #f9f9f9;
@@ -246,29 +241,29 @@ form {
 
 .story-details {
     display: flex;
-    flex-direction: column; /* Changed to vertical stacking */
+    flex-direction: column; 
     gap: 20px;
 }
 
 .story-details-item {
-    display: flex; /* Reverted to horizontal stacking */
-    gap: 20px; /* Added gap between image and text */
-    align-items: center; /* Center the content vertically */
+    display: flex; 
+    gap: 20px;
+    align-items: center; 
 }
 
 .story-details-img {
-    flex: 1; /* Each div takes equal width */
+    flex: 1; 
 }
 
 .story-details-img img {
-    width: 100%; /* Image takes the entire width of the div */
-    height: 80%; /* Adjusted height of the images */
-    object-fit: cover; /* Ensure the images cover the entire container */
-    border-radius: 20px; /* Adjusted border radius to match the image shape */
+    width: 100%;
+    height: 80%; 
+    object-fit: cover;
+    border-radius: 20px; 
 }
 
 .story-details-text {
-    flex: 1; /* Each div takes equal width */
+    flex: 1; 
 }
 
 .story-details-text p {
@@ -309,22 +304,22 @@ form {
 
 .features-columns {
     display: flex;
-    justify-content: space-between; /* Updated to add space between columns */
-    gap: 20px; /* Added gap between columns */
+    justify-content: space-between; 
+    gap: 20px; 
 }
 
 .feature-column {
-    flex: 1; /* Updated to allow flexible width for columns */
-    text-align: left; /* Adjusted alignment */
-    padding: 20px; /* Added padding */
-    background-color: #333; /* Lighter background color */
-    border-radius: 10px; /* Added curved background for columns */
+    flex: 1; 
+    text-align: left; 
+    padding: 20px;
+    background-color: #333; 
+    border-radius: 10px; 
 }
 
 .feature-title {
     font-size: 24px;
     margin-bottom: 10px;
-    color: #f97300 /* Reduced margin */
+    color: #f97300 
 }
 
 .feature-description {
@@ -339,27 +334,27 @@ form {
     margin-bottom: 20px;
     border-radius: 120px;
     display: flex;
-    justify-content: space-between; /* Updated to add space between columns */
-    gap: 20px; /* Added gap between columns */
+    justify-content: space-between; 
+    gap: 20px; 
     border-radius: 20px;
 }
 
 .statistics-left,
 .statistics-right {
-    flex: 1; /* Updated to allow flexible width for columns */
-    text-align: center; /* Adjusted alignment */
-    padding: 20px; /* Added padding */
-    background-color: #333; /* Lighter background color */
-    border-radius: 10px; /* Added curved background for columns */
+    flex: 1; 
+    text-align: center; 
+    padding: 20px; 
+    background-color: #333; 
+    border-radius: 10px; 
 }
 
 .statistics-left {
-    border-right: none; /* Removed border on the left column */
+    border-right: none;
 }
 
 .statistics-subheading {
     font-size: 24px;
-    margin-bottom: 10px; /* Reduced margin */
+    margin-bottom: 10px; 
 }
 
 .statistics-text {

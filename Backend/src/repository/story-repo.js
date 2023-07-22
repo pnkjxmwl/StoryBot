@@ -42,7 +42,6 @@ class StoryRepository {
     }
     async  getAllStories() {
         try {
-          // Use the find() method on the Story model to fetch all stories
           const stories = await Story.find().populate({path:'userId'});
       
           return stories; 

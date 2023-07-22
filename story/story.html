@@ -38,25 +38,25 @@
 
 .story-details {
     display: flex;
-    flex-direction: column; /* Changed to vertical stacking */
+    flex-direction: column; 
     gap: 20px;
 }
 
 .story-details-item {
-    display: flex; /* Reverted to horizontal stacking */
-    gap: 20px; /* Added gap between image and text */
-    align-items: center; /* Center the content vertically */
+    display: flex; 
+    gap: 20px; 
+    align-items: center;
 }
 
 .story-details-img {
-    flex: 1; /* Each div takes equal width */
+    flex: 1;
 }
 
 .story-details-img img {
-    width: 100%; /* Image takes the entire width of the div */
-    height: 80%; /* Adjusted height of the images */
-    object-fit: cover; /* Ensure the images cover the entire container */
-    border-radius: 10px; /* Adjusted border radius to match the image shape */
+    width: 100%; 
+    height: 80%; 
+    object-fit: cover; 
+    border-radius: 10px; 
 }
 .main-content {
     background-color: #1a1a1a;
@@ -67,7 +67,7 @@
     text-align: center;
 }
 .story-details-text {
-    flex: 1; /* Each div takes equal width */
+    flex: 1; 
 }
 
 .story-details-text p {
@@ -147,15 +147,13 @@
     // Check for the presence of a JWT token in localStorage
     const jwtToken = localStorage.getItem('jwtToken');
     if (jwtToken) {
-      // Token is present, show the welcome page with user info
+     
       const profileLink = document.getElementById('profile-link');
         profileLink.style.display = 'block';
       const loginLink = document.getElementById('login-link');
       loginLink.textContent = 'Logout';
       loginLink.addEventListener('click', () => {
-        // Remove the token from localStorage (you may need to perform other logout actions based on your setup)
         localStorage.removeItem('jwtToken');
-        // Redirect to the main HTML (replace "main.html" with your desired URL)
         window.location.href = 'file:///D:/PROGRAM/Projects/StoryBot/story/index.html';
     });
 }
@@ -177,7 +175,6 @@ else{
         const storyId = queryParams.storyId;
   
         if (!storyId) {
-          // Redirect back to the main page if the storyId is not provided
           window.location.href = 'file:///D:/PROGRAM/Projects/StoryBot/Frontend/userstories.html';
         }
       

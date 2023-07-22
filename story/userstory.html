@@ -72,7 +72,7 @@
     }
 
     .story {
-      width: calc(33.33% - 20px); /* Adjusted width to fit 3 in a row */
+      width: calc(33.33% - 20px); 
       background-color: #f97300;
       color: #fff;
       border-radius: 10px;
@@ -132,7 +132,6 @@
         return jwtToken ? true : false;
       }
 
-      // Function to redirect to the main page
       function redirectToMainPage() {
         window.location.href = 'file:///D:/PROGRAM/Projects/StoryBot/story/index.html';
       }
@@ -145,9 +144,7 @@
       const loginLink = document.getElementById('login-link');
       loginLink.textContent = 'Logout';
       loginLink.addEventListener('click', () => {
-        // Remove the token from localStorage (you may need to perform other logout actions based on your setup)
         localStorage.removeItem('jwtToken');
-        // Redirect to the main HTML (replace "main.html" with your desired URL)
         window.location.href = 'file:///D:/PROGRAM/Projects/StoryBot/story/index.html';
     });
 
@@ -184,7 +181,6 @@
           storyDiv.appendChild(imgTag);
 
           storyDiv.addEventListener('click', () => {
-            // Redirect to the story page with the full story content
             window.location.href = `file:///D:/PROGRAM/Projects/StoryBot/story/story.html?storyId=${story._id}`;
           }); 
             
@@ -205,11 +201,10 @@
         const response = await fetch('http://127.0.0.1:4000/api/v1/isAuthenticated', {
           method: 'GET',
           headers: {
-            'x-access-token': jwtToken, // Attach the JWT token as x-access-token in the headers
+            'x-access-token': jwtToken, 
           }
         });
         const data = await response.json();
-        console.log(data);
         return data.data
       }
     })();

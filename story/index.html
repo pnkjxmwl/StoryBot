@@ -130,11 +130,15 @@
       document.getElementById('story-form').addEventListener('submit',async function(event) {
         event.preventDefault();
         document.getElementById('loader').style.display='block';
+        document.getElementById('result').innerHTML="";
+        document.getElementById('result').style.display = 'none';
+
+
         const jwtToken = localStorage.getItem('jwtToken');
         const  response = await fetch('http://127.0.0.1:4000/api/v1/isAuthenticated', {
           method: 'GET',
           headers: {
-              'x-access-token': jwtToken, // Attach the JWT token as x-access-token in the headers
+              'x-access-token': jwtToken, 
             }
         });
        const data= await response.json();
@@ -144,7 +148,7 @@
   
         const title = document.getElementById('story-title').value;
         const theme = document.querySelector('input[name="theme"]:checked').value;
-        const userid = user._id; // Replace with your user ID
+        const userid = user._id; 
   
         const requestBody = {
           content: title,

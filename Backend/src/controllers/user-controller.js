@@ -34,7 +34,6 @@ export const createUser= async (req,resp)=>{
 export const getUser= async(req,resp)=>{
 
         try {
-            //console.log(req.query);
             const user= await userservice.findbyid(req.query.id)
             return resp.status(200).json({
                 success:true,
@@ -77,7 +76,6 @@ export const isAuthenticated= async (req,resp)=>{
 
     try {
         const token=req.headers['x-access-token'];
-        console.log(token);
         const response=await userservice.isAuthenticated(token)     
         return resp.status(200).json({
             success:true,

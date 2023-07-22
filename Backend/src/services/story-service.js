@@ -18,23 +18,18 @@ class StoryService{
         {   
 
             try {
-                console.log("in story service ",theme,content,userId);
                 const storytitle=content
                 const inputText=`
                 I want you to act as a storyteller.  You will write a story in under 200 words . My first request is "I am going to write a short story about ${content} on the theme ${theme}`;
                 var storycontent=await this.getChatGPTResponse(inputText)
-                console.log(storycontent);
 
                 const partsArray = separateIntoParts(storycontent);
-                console.log(partsArray);
 
                if(!storycontent)
                {
                 throw {error:"Chatgpt doesnt give the Story"};
                }
-              //const imagesArr=[]
               const imagesArr=await generateImages(partsArray)
-             console.log(imagesArr);
                 var user=await this.userrepo.find(userId);
 
                 const story= await this.storyrepo.create(

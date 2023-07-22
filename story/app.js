@@ -3,13 +3,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const jwtToken = localStorage.getItem('jwtToken');
 
     if (jwtToken) {
-      // Token is present, show the welcome page with user info
-
         window.location.href = 'file:///D:/PROGRAM/Projects/StoryBot/story/index.html';
     }
  })
 
-// Handle signin form submission
 document.getElementById('signinForm').addEventListener('submit', async (event) => {
     event.preventDefault();
   
@@ -29,17 +26,13 @@ document.getElementById('signinForm').addEventListener('submit', async (event) =
       const data = await response.json();
       console.log(data);
       if (data.success) {
-        // Signin success: Store the JWT token in localStorage
         localStorage.setItem('jwtToken', data.data);
-       // alert('Signin successful! You are now authenticated.');
         window.location.href = 'file:///D:/PROGRAM/Projects/StoryBot/story/index.html';
 
       } else {
-        // Signin failed: Display the error message from the server
         alert(data.message || 'Signin failed. Please check your credentials and try again.');
       }
     } catch (error) {
-      // Handle any network or server-related errors
       console.error('Error during signin:', error);
       alert('An error occurred during signin. Please try again later.');
     }

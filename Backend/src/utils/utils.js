@@ -4,10 +4,7 @@ dotenv.config();
 const replicate = new Replicate({
   auth: process.env.REPLICATE_API_TOKEN,
 });
-// export function separateIntoParts(content) {
-//     const parts = content.split('&').map(part => part.trim());
-//     return parts;
-//   }
+
 export function separateIntoParts(content) {
   const paragraphs = content.split('\n');
   const title = paragraphs[0].trim();

@@ -33,9 +33,7 @@ class UserService{
     async signIn(email,plainPassword)
     {
         try {
-            //console.log(email,plainPassword);
             const user= await this.userrepo.getByEmail(email)
-            //console.log(user);
             if(!user)
             {
                 throw   {error:"not registerd email"}
@@ -54,7 +52,6 @@ class UserService{
 
         } catch (error) {
             console.log('something wrong in signin');
-           // console.log(error.name)
             throw error
         }
 
@@ -96,7 +93,6 @@ async isAuthenticated(token){
  verifyToken(token){
 
     try {
-        console.log(token);
         const response=jwt.verify(token,'pankaj')
         return response;
 
