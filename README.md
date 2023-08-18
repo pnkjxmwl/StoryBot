@@ -6,11 +6,17 @@
 ## Installation and Setup    
 
  Clone the repository:    
-  ``` git clone https://github.com/pnkjxmwl/StoryBot.git```    
+  ``` 
+  git clone https://github.com/pnkjxmwl/StoryBot.git
+  ```    
  Navigate to the project directory:  
-   ``` cd StoryBot ```  
+   ``` 
+   cd StoryBot
+   ```  
  Install the required dependencies:    
-  ```npm install```   
+  ```
+  npm install
+ ```   
 Create an .env file in the root directory and add the following environment variables:   
   ```
   OPENAI_API_KEY=your-chatgpt-api-token
