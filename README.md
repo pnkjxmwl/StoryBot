@@ -1,5 +1,7 @@
 # StoryBot
 
+Demo Video : https://www.youtube.com/watch?v=7fCWgZodX5Q   
+
 ## Description: 
   Story Bot is a web application that uses AI to generate stories based on user-provided titles, descriptions, and themes. The application utilizes the ChatGPT API for text generation and the Stable Diffusion Replicate API for generating images. This repository contains the backend code for the application, which is built using Node.js, Express, and MongoDB.   
 
